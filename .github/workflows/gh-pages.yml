@@ -1,0 +1,20 @@
+name: Deploy site from src/
+
+on:
+  push:
+    branches: [ main ]          # or your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Publish src/ to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          publish_branch: gh-pages
+          publish_dir: ./src
+          # Optional: cname: your.custom.domain
+          # Optional: keep_files: .gitignore
