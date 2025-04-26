@@ -1,20 +1,23 @@
-name: Deploy site from src/
+name: Deploy static site to GitHub Pages
 
 on:
   push:
-    branches: [ main ]          # or your default branch
+    branches:
+      - main      # or your default branch
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Publish src/ to GitHub Pages
+      # ── No build step needed for plain HTML ──
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          publish_branch: gh-pages
-          publish_dir: ./src
-          cname: https://castlefile.xyz
-          # Optional: keep_files: .gitignore
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./src      # ← Point to your src folder
+          # cname: your.domain.com  # ← Uncomment if you didn’t commit src/CNAME
