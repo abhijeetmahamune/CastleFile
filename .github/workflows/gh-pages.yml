@@ -16,5 +16,5 @@ jobs:
         with:
           publish_branch: gh-pages
           publish_dir: ./src
-          # Optional: cname: your.custom.domain
+          cname: https://castlefile.xyz
           # Optional: keep_files: .gitignore
